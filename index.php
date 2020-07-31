@@ -15,7 +15,6 @@ if( $_SERVER['REQUEST_METHOD'] === 'POST' ){
 }
 
 if (!empty($postLoader->getPosts())) {
-    var_dump($postLoader->getPosts());
     $posts = $postLoader->getPosts();
     foreach ($posts as $post) {
         echo "<div class='mx-5 my-2'><h4>{$post->getTitle()}</h4>

@@ -11,11 +11,10 @@ class PostLoader {
         $file = file_get_contents(self::FILE_NAME);
         $posts = unserialize($file, array('allowed_classes' => ['Post']));
 
-        if (is_array($posts)) {
-            $this->posts = $posts;
-        }
         if (empty($posts)) {
             $this->posts = [];
+        } else {
+            $this->posts = $posts;
         }
     }
 
