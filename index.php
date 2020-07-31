@@ -6,24 +6,24 @@ error_reporting(E_ALL);
 
 require 'Post.php';
 require 'PostLoader.php';
+require 'form.php';
 
 $postLoader = new PostLoader();
-var_dump($postLoader);
 if( $_SERVER['REQUEST_METHOD'] === 'POST' ){
-    foreach($_POST as $field => $value) {
-            $value = trim(htmlspecialchars($value));
-        }
     $postLoader->addPost(new Post($_POST['title'], $_POST['content'], $_POST['author']));
     $postLoader->savePost();
-    var_dump($postLoader->getPosts());
-    $posts = $postLoader->getPosts();
-    foreach ($posts as $post => $output) {
-        echo "{__toString($output)} <br>";
-    }
-
 }
 
-require 'form.php';
+if (!empty($postLoader->getPosts())) {
+    var_dump($postLoader->getPosts());
+    $posts = $postLoader->getPosts();
+    foreach ($posts as $post) {
+        echo "<div class='mx-5 my-2'><h4>{$post->getTitle()}</h4>
+        <p>{$post->getContent()}</p>
+        <p><strong>{$post->getAuthor()}</strong> - {$post->getDate()}</p></div><hr>";
+    }
+}
+require 'form2.php';
 
 
 

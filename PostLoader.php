@@ -14,6 +14,9 @@ class PostLoader {
         if (is_array($posts)) {
             $this->posts = $posts;
         }
+        if (empty($posts)) {
+            $this->posts = [];
+        }
     }
 
     public function addPost(Post $post) {
@@ -30,11 +33,6 @@ class PostLoader {
     public function getPosts(): array
     {
         //limit posts returns & sort per date
-        return $this->posts;
-    }
-
-    public function __toString() : string
-    {
         return $this->posts;
     }
 }
