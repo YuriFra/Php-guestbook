@@ -31,7 +31,9 @@ class PostLoader {
      */
     public function getPosts(): array
     {
-        //limit posts returns & sort per date
+        //limit posts returns & return last 20
+        $this->posts = array_reverse($this->posts);
+        $this->posts = array_slice($this->posts, 0, 20);
         return $this->posts;
     }
 }
